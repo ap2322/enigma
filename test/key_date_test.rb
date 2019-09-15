@@ -19,7 +19,6 @@ class KeyDateTest < Minitest::Test
 
   def test_today
     # How to mock/stub this?
-    binding.pry
     time = mock("Time")
     output = time.expects(:strftime).returns("091519")
 
