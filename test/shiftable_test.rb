@@ -35,8 +35,10 @@ class ShiftableTest < Minitest::Test
     text = @encryption.message_in
     offset_hash = @encryption.final_offset
 
-    assert_equal "", @encryption.shift_message(text, offset_hash)
+    @encrypt2 = Encryption.new('poop', '23456', '091519')
 
+    assert_equal "koiorjtruva!", @encryption.shift_message(text, offset_hash)
+    assert_equal "syls", @encrypt2.shift_message(@encrypt2.message_in, @encrypt2.final_offset)
   end
 
 end
