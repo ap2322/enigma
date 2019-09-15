@@ -2,12 +2,13 @@ module Shiftable
 
   def message_offset(text, final_offset)
     message_array = text.downcase.split(//)
-    offset_values = final_offset.values
     message_offset = []
+    symbols_to_find = [:A, :B, :C, :D]
     message_array.each_with_index do |char, index|
-      message_offset << offset_values[index % 4]
+      key = symbols_to_find[index % 4]
+      message_offset << final_offset[key]
     end
-    message_array.zip(message_offset).to_h
+    message_array.zip(message_offset)
   end
 
   def shift_message(text, final_offset)
@@ -23,7 +24,6 @@ module Shiftable
       else
         new_message_array << key
       end
-      binding.pry
     end
     new_message_array.join
   end
