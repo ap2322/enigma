@@ -12,7 +12,7 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_attributes_at_init
+  def test_encrypt
     expected = {encryption: "keder ohulw",
                 key: "02715",
                 date: "040895"}
