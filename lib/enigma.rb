@@ -1,4 +1,4 @@
-# require_relative './encrypt'
+require_relative './encrypt'
 
 class Enigma
   def initialize
@@ -6,7 +6,7 @@ class Enigma
 
   def encrypt(message, key, date)
     encrypted_hash = {
-      # encryption: Encrypt.new(message),
+      encryption: Encrypt.new(message, key, date),
       key: key,
       date: date,
     }

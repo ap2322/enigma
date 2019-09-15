@@ -1,5 +1,4 @@
 require './test_helper'
-
 require 'date'
 require_relative '../lib/enigma'
 
@@ -13,10 +12,13 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_attributes_at_init
-    # add stub/expected for Encrypt.new
+    encrypted_message = mock("keder ohulw")
+    encrypted_message.expects(:new).returns("keder ohulw")
 
-    # expected = {encryption: "keder ohulw", key: "02715", date: "040895"}
-    #
-    # assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+    expected = {encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"}
+
+    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
 end
