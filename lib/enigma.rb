@@ -1,4 +1,5 @@
 require_relative './encryption'
+require_relative './key_date'
 
 class Enigma
   def initialize
@@ -14,5 +15,9 @@ class Enigma
       date: date,
     }
     encrypted_hash
+  end
+
+  def today
+    date = KeyDate.new.date
   end
 end
