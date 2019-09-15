@@ -16,4 +16,12 @@ class Encryption
     end
   end
 
+  def offset(date)
+    last_4_of_square = (date.to_i**2).digits.reverse[-4..-1]
+    key_date = {A:nil, B:nil, C: nil, D: nil}
+    key_date.each_with_index do |(key, value), index|
+      key_date[key] = last_4_of_square[index]
+    end
+    key_date
+  end
 end
