@@ -1,5 +1,9 @@
+require_relative '../lib/shiftable'
+
 class Encryption
-  attr_reader :key, :date
+  include Shiftable
+
+  attr_reader :key, :date, :message_in
 
   def initialize(message, key, date)
     @message_in = message
