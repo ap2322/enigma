@@ -1,4 +1,6 @@
 class Encryption
+  attr_reader :key, :date
+
   def initialize(message, key, date)
     @message_in = message
     @key = key
@@ -14,6 +16,7 @@ class Encryption
         keys_hash[key] = value.to_i
       end
     end
+    keys_hash
   end
 
   def offset(date)
@@ -23,5 +26,11 @@ class Encryption
       key_date[key] = last_4_of_square[index]
     end
     key_date
+  end
+
+  def final_offset
+    @final_offset = keys_letters(key).merge(offset(date)) do |key, oldv, newv|
+      oldv + newv
+    end
   end
 end
