@@ -21,11 +21,14 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_date
-    today = "091519"
+    today = "091619"
     assert_equal today, @enigma.date
   end
 
   def test_encrypt_today
+    date = mock
+    date.expects(:date).returns("091519")
+    
     expected = {encryption: "koiorjtruva!",
                 key: "23456",
                 date: "091519"}
