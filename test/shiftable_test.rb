@@ -14,6 +14,29 @@ class ShiftableTest < Minitest::Test
     @decryption.final_offset
   end
 
+  def test_keys_letters_encryption
+    num_key = "23456"
+    expected = {A: 23, B: 34, C:45, D: 56}
+    assert_equal expected, @encryption.keys_letters(num_key)
+  end
+
+  def test_offset_encryption
+    date = "091519"
+    expected = {A:7, B:3, C:6, D:1}
+
+    assert_equal expected, @encryption.offset(date)
+  end
+
+  def test_keys_letters_decryption
+    expected = {A: 02 , B: 27 , C: 71 , D: 15 }
+    assert_equal expected, @decryption.keys_letters("02715")
+  end
+
+  def test_offset_decryption
+    expected = {A: 1, B: 0, C: 2, D: 5}
+    assert_equal expected, @decryption.offset("040895")
+  end
+
   def test_message_offset
     text = @encryption.message_in
     offset_hash = @encryption.final_offset #{A:30, B:37, C:51, D: 57}
