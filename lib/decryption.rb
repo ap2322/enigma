@@ -31,10 +31,10 @@ class Decryption
     end
     key_date
   end
-  
+
   def final_offset
     @final_offset = keys_letters(key).merge(offset(date)) do |key, oldv, newv|
-      oldv + newv
+      (oldv + newv)*-1
     end
   end
 end
