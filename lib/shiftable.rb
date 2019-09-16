@@ -5,8 +5,7 @@ module Shiftable
     keys_hash = {A: nil, B: nil, C: nil, D:nil}
     keys_hash.each_with_index do |(key, value), index|
       if index < keys_hash.length
-        value = num_array[index] + num_array[index + 1]
-        keys_hash[key] = value.to_i
+        keys_hash[key] = (num_array[index] + num_array[index + 1]).to_i
       end
     end
     keys_hash
@@ -26,27 +25,21 @@ module Shiftable
     message_offset = []
     symbols_to_find = [:A, :B, :C, :D]
     message_array.each_with_index do |char, index|
-      key = symbols_to_find[index % 4]
-      message_offset << final_offset[key]
+      message_offset << final_offset[symbols_to_find[index % 4]]
     end
     message_array.zip(message_offset)
   end
 
   def shift_message(text, final_offset)
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
-      "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
-    offset = message_offset(text, final_offset)
-    new_message_array = []
-    offset.each do |key, value|
+    alphabet = ("a".."z").to_a << " "
+    message_offset(text, final_offset).map do |key, value|
       if alphabet.include?(key)
         full_shift = alphabet.index(key) + value
-        new_letter = alphabet[full_shift % alphabet.length]
-        new_message_array << new_letter
+        alphabet[full_shift % alphabet.length]
       else
-        new_message_array << key
+        key
       end
-    end
-    new_message_array.join
+    end.join
   end
 
 end
