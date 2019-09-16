@@ -1,5 +1,6 @@
 require_relative './encryption'
-require_relative './key_date'
+require_relative './key'
+require_relative './date'
 
 class Enigma
   def initialize
@@ -19,6 +20,6 @@ class Enigma
   end
 
   def date
-    KeyDate.new.date
+    Date.new.date
   end
 end
