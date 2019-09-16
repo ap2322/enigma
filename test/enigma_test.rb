@@ -68,6 +68,8 @@ class EnigmaTest < Minitest::Test
 
   def test_decrypt_today_generate_key
 
+    expect(:key).returns("23456")
+
     expected = {decryption: "hello world!",
                 key: "23456",
                 date: "091619"}
