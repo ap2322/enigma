@@ -55,8 +55,13 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_key
-    key = "00000"
-    assert_equal key, @enigma.key
+    assert_instance_of String, @enigma.key
+    assert_equal 5, @enigma.key.length
+
+    @e2 = Enigma.new
+    @e2.expects(:key).returns("23456")
+
+    assert_equal "23456", @e2.key
   end
 
   def test_encrypt_today_generate_key
