@@ -29,8 +29,10 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_date
-    today = "091619"
+    today = Time.new.strftime("%m%d%y")
+
     assert_equal today, @enigma.date
+    assert_equal 6, @enigma.date.length
   end
 
   def test_encrypt_today
@@ -58,6 +60,8 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypt_today_generate_key
+    @enigma.instance_variable_set(:@key, "23456")
+    @enigma.instance_variable_set(:@date, "091619")
 
     expected = {encryption: "emiolhtrota!",
                 key: "23456",
@@ -67,8 +71,8 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypt_today_generate_key
-
-    expect(:key).returns("23456")
+    @enigma.instance_variable_set(:@key, "23456")
+    @enigma.instance_variable_set(:@date, "091619")
 
     expected = {decryption: "hello world!",
                 key: "23456",
