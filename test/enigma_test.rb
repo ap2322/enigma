@@ -43,4 +43,26 @@ class EnigmaTest < Minitest::Test
 
     assert_equal expected, @enigma.encrypt("hello world!", "23456")
   end
+
+  def test_decrypt_today
+    # stub date
+    expected = {decryption: "hello world!",
+                key: "23456",
+                date: "091619"}
+    assert_equal expected, @enigma.decrypt("emiolhtrota!", "23456")
+  end
+
+  def test_key
+    key = "00000"
+    assert_equal key, @enigma.key
+  end
+
+  def test_encrypt_today_generate_key
+    
+    expected = {encryption: "emiolhtrota!",
+                key: "23456",
+                date: "091619"}
+
+    assert_equal expected, @enigma.encrypt("hello world!")
+  end
 end
