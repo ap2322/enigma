@@ -13,17 +13,10 @@ class EncrypionTest < Minitest::Test
     assert_instance_of Encryption, @encryption
   end
 
-  def test_keys_letters
-    num_key = "23456"
-    expected = {A: 23, B: 34, C:45, D: 56}
-    assert_equal expected, @encryption.keys_letters(num_key)
-  end
-
-  def test_offset
-    date = "091519"
-    expected = {A:7, B:3, C:6, D:1}
-
-    assert_equal expected, @encryption.offset(date)
+  def test_attributes_at_init
+    assert_equal "Hello World", @encryption.message_in
+    assert_equal "23456", @encryption.key
+    assert_equal "091519", @encryption.date
   end
 
   def test_final_offset
