@@ -80,19 +80,22 @@ class CrackItTest < Minitest::Test
 
   def test_multiples_of_27
     expected = {
-        :A=>[8, 35, 62, 89],
-        :B=>[2, 29, 56, 83],
-        :C=>[3, 30, 57, 84],
-        :D=>[4, 31, 58, 85]
+        :A=>["08", "35", "62", "89"],
+        :B=>["02", "29", "56", "83"],
+        :C=>["03", "30", "57", "84"],
+        :D=>["04", "31", "58", "85"]
       }
     expected2 = {
-        :A=>[20, 47, 74],
-        :B=>[21, 48, 75],
-        :C=>[8, 35, 62, 89],
-        :D=>[18, 45, 72, 99]
+        :A=>["20", "47", "74"],
+        :B=>["21", "48", "75"],
+        :C=>["08", "35", "62", "89"],
+        :D=>["18", "45", "72", "99"]
       }
 
     assert_equal expected, @crack_me.key_possibilities
     assert_equal expected2, @crack_me_known_key.key_possibilities
+  end
+
+  def test_convert_
   end
 end

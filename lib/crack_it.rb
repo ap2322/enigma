@@ -61,18 +61,15 @@ class CrackIt
     subkey = get_subkey
     key_possibles = Hash.new([])
     subkey.each do |k, v|
-      key_possibles[k] = [v] if key_possibles[k].empty?
+      key_possibles[k] = [v.to_s.rjust(2, '00')] if key_possibles[k].empty?
       while (v + 27) < 100
-        key_possibles[k] << v + 27
+        key_possibles[k] << (v + 27).to_s.rjust(2, '00')
         v += 27
       end
     end
     key_possibles
   end
 
-  # def final_offset
-  #   @final_offset = keys_letters(key).merge(offset(date)) do |key, oldv, newv|
-  #     oldv + newv
-  #   end
-  # end
+
+
 end
