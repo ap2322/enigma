@@ -25,7 +25,12 @@ class CrackItTest < Minitest::Test
   end
 
   def test_find_shift
-    expected = [0, 0, 0, 0]
+    expected = [-8, -14, -5, -5]
     assert_equal expected, @crack_me.find_shift
+  end
+
+  def test_normalize
+    assert_equal -8, @crack_me.normalize(19)
+    assert_equal -7, @crack_me.normalize(20)
   end
 end

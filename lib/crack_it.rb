@@ -18,7 +18,16 @@ class CrackIt
   end
 
   def find_shift
+    last_4 = last_4_match
+    alphabet = ("a".."z").to_a << " "
+    last_4.map do |c1, c2|
+      normalize(alphabet.index(c2) - alphabet.index(c1))
+    end
+  end
 
+  def normalize(difference)
+    return difference unless difference > 0
+    difference - 27
   end
 
   # def final_offset
