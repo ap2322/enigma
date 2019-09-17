@@ -5,8 +5,8 @@ require_relative './date'
 
 class Enigma
   def initialize
-    @date = date
-    @key = key
+    @date = Date.date
+    @key = Key.random_number
   end
 
   def encrypt(message, key = @key, date = @date)
@@ -23,11 +23,4 @@ class Enigma
     { decryption: decrypted_message, key: key, date: date, }
   end
 
-  def date
-    Date.date
-  end
-
-  def key
-    Key.new.random_number
-  end
 end
