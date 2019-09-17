@@ -56,9 +56,15 @@ class CrackItTest < Minitest::Test
       ["i", -5],
       ["h", -8],
       ["s", -14],
-      ["s", -5], 
+      ["s", -5],
       ["i", -5]
     ]
     assert_equal expected, @crack_me.full_message_shifts
+  end
+
+  def test_match_ABCD_values
+    expected = {A: -14, B: -5, C: -5, D: -8}
+
+    assert_equal expected, @crack_me.match_ABCD_values
   end
 end

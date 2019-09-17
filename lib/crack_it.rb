@@ -41,6 +41,15 @@ class CrackIt
     letter_shifts.reverse!
   end
 
+  def match_ABCD_values
+    first_4 = full_message_shifts[0..3]
+    abcd = {A: nil, B: nil, C: nil, D:nil}
+    abcd.each_with_index do |(k, v), i|
+      abcd[k] = first_4[i][1]
+    end
+    abcd
+  end
+
   # def final_offset
   #   @final_offset = keys_letters(key).merge(offset(date)) do |key, oldv, newv|
   #     oldv + newv
