@@ -8,11 +8,11 @@ class CrackIt
   def initialize(message, date)
     @message_in = message
     @date = date
+    @message_in_char_array = message_in.chars
   end
 
   def last_4_match
     sign_off = " end".chars
-    @message_in_char_array = message_in.chars
     last_4 = @message_in_char_array[-4..-1]
     last_4.zip(sign_off)
   end
