@@ -13,11 +13,9 @@ class DateTest < Minitest::Test
   end
 
   def test_today
-    # How to mock/stub this?
-    # time = mock("Time")
-    # output = time.expects(:strftime).returns("091619")
+    today = Time.new.strftime("%m%d%y")
 
-    assert_equal "091619", @date.date
+    assert_equal today, @date.date
   end
 
 end
