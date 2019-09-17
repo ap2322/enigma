@@ -24,7 +24,7 @@ class Enigma
   end
 
   def date
-    Date.new.date
+    Date.date
   end
 
   def key
