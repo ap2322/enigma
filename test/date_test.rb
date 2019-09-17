@@ -13,7 +13,7 @@ class DateTest < Minitest::Test
   end
 
   def test_today
-    today = Time.new.strftime("%m%d%y")
+    today = Time.new.strftime("%d%m%y")
 
     assert_equal today, @date.date
   end

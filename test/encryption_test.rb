@@ -6,7 +6,7 @@ require 'pry'
 
 class EncrypionTest < Minitest::Test
   def setup
-    @encryption = Encryption.new("Hello World", "23456", "091519")
+    @encryption = Encryption.new("Hello World", "23456", "150919")
   end
 
   def test_it_exists
@@ -16,13 +16,11 @@ class EncrypionTest < Minitest::Test
   def test_attributes_at_init
     assert_equal "Hello World", @encryption.message_in
     assert_equal "23456", @encryption.key
-    assert_equal "091519", @encryption.date
+    assert_equal "150919", @encryption.date
   end
 
   def test_final_offset
-    num_key = "23456"
-    date = "091519"
-    expected = {A:30, B:37, C:51, D: 57}
+    expected = {:A=>27, :B=>39, :C=>51, :D=>57}
 
     assert_equal expected, @encryption.final_offset
   end
