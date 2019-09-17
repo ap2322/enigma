@@ -30,6 +30,16 @@ class CrackIt
     difference - 27
   end
 
+  def full_message_shifts
+    rev_m = @message_in_char_array.reverse
+    rev_shifts = find_shift.reverse
+    letter_shifts = []
+    rev_m.each_with_index do |char, index|
+      letter_shifts << [char, rev_shifts[index %4]]
+    end
+    letter_shifts.reverse!
+  end
+
   # def final_offset
   #   @final_offset = keys_letters(key).merge(offset(date)) do |key, oldv, newv|
   #     oldv + newv

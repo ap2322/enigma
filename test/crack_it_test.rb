@@ -33,4 +33,25 @@ class CrackItTest < Minitest::Test
     assert_equal -8, @crack_me.normalize(19)
     assert_equal -7, @crack_me.normalize(20)
   end
+
+  def test_match_shift_values_to_full_message
+    expected = [
+      ["v", -14],
+      ["j", -5],
+      ["q", -5],
+      ["t", -8],
+      ["b", -14],
+      ["e", -5],
+      ["a", -5],
+      ["w", -8],
+      ["e", -14],
+      ["q", -5],
+      ["i", -5],
+      ["h", -8],
+      ["s", -14],
+      ["s", -5], 
+      ["i", -5]
+    ]
+    assert_equal expected, @crack_me.full_message_shifts
+  end
 end
