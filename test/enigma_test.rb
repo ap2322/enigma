@@ -28,13 +28,6 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_date
-    today = Time.new.strftime("%d%m%y")
-
-    assert_equal today, @enigma.date
-    assert_equal 6, @enigma.date.length
-  end
-
   def test_encrypt_today
     today = Time.new.strftime("%d%m%y")
 
@@ -52,16 +45,6 @@ class EnigmaTest < Minitest::Test
                 key: "23456",
                 date: today}
     assert_equal expected, @enigma.decrypt("hqiooltrrxa!", "23456")
-  end
-
-  def test_key
-    assert_instance_of String, @enigma.key
-    assert_equal 5, @enigma.key.length
-
-    @e2 = Enigma.new
-    @e2.expects(:key).returns("23456")
-
-    assert_equal "23456", @e2.key
   end
 
   def test_encrypt_today_generate_key
