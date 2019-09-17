@@ -19,7 +19,7 @@ class Enigma
   def decrypt(message, key = @key, date = @date)
     decryption = Decryption.new(message, key, date)
     decrypted_message = decryption.shift_message(
-      decryption.message_in, decryption.final_offset)
+                        decryption.message_in, decryption.final_offset)
     { decryption: decrypted_message, key: key, date: date, }
   end
 
