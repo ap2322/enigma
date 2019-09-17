@@ -24,8 +24,12 @@ class EnigmaTest < Minitest::Test
     expected = {decryption: "hello world",
                 key: "02715",
                 date: "040895"}
+    expected2 = {:decryption=>"a random, sentence! and here's more at the end",
+                 :key=>"74899",
+                 :date=>"170919"}
 
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
+    assert_equal expected2, @enigma.decrypt("yzetkcbe,zfxkssf d!symrsedex'rnelqssysnlednxkc", "74899", "170919")
   end
 
   def test_encrypt_today
