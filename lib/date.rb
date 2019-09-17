@@ -6,7 +6,7 @@ class Date
 
   def date
     time = Time.new
-    time.strftime("%m%d%y")
+    time.strftime("%d%m%y")
   end
 
 end

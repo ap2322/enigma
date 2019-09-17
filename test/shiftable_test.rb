@@ -8,7 +8,7 @@ require 'pry'
 
 class ShiftableTest < Minitest::Test
   def setup
-    @encryption = Encryption.new("Hello World!", "23456", "091519")
+    @encryption = Encryption.new("Hello World!", "23456", "150919")
     @encryption.final_offset
     @decryption = Decryption.new("keder ohulw", "02715", "040895")
     @decryption.final_offset
@@ -21,8 +21,8 @@ class ShiftableTest < Minitest::Test
   end
 
   def test_offset_encryption
-    date = "091519"
-    expected = {A:7, B:3, C:6, D:1}
+    date = "150919"
+    expected = {:A=>4, :B=>5, :C=>6, :D=>1}
 
     assert_equal expected, @encryption.offset(date)
   end
@@ -41,16 +41,16 @@ class ShiftableTest < Minitest::Test
     text = @encryption.message_in
     offset_hash = @encryption.final_offset #{A:30, B:37, C:51, D: 57}
     expected = [
-       ["h", 30],
-       ["e", 37],
+       ["h", 27],
+       ["e", 39],
        ["l", 51],
        ["l", 57],
-       ["o", 30],
-       [" ", 37],
+       ["o", 27],
+       [" ", 39],
        ["w", 51],
        ["o", 57],
-       ["r", 30],
-       ["l", 37],
+       ["r", 27],
+       ["l", 39],
        ["d", 51],
        ["!", 57]]
 
@@ -61,10 +61,10 @@ class ShiftableTest < Minitest::Test
     text = @encryption.message_in
     offset_hash = @encryption.final_offset
 
-    @encrypt2 = Encryption.new('poop', '23456', '091519')
+    @encrypt2 = Encryption.new('poop', '23456', '150919')
 
-    assert_equal "koiorjtruva!", @encryption.shift_message(text, offset_hash)
-    assert_equal "syls", @encrypt2.shift_message(@encrypt2.message_in, @encrypt2.final_offset)
+    assert_equal "hqiooltrrxa!", @encryption.shift_message(text, offset_hash)
+    assert_equal "p ls", @encrypt2.shift_message(@encrypt2.message_in, @encrypt2.final_offset)
   end
 
   def test_message_offset_decryption
@@ -91,11 +91,9 @@ class ShiftableTest < Minitest::Test
     text = @decryption.message_in
     offset_hash = @decryption.final_offset
 
-    @decrypt2 = Decryption.new('syls', '23456', '091519')
+    @decrypt2 = Decryption.new('p ls', '23456', '150919')
 
     assert_equal "hello world", @decryption.shift_message(text, offset_hash)
     assert_equal "poop", @decrypt2.shift_message(@decrypt2.message_in, @decrypt2.final_offset)
   end
-
-
 end

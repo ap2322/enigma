@@ -29,51 +29,60 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_date
-    today = "091619"
+    today = Time.new.strftime("%d%m%y")
+
     assert_equal today, @enigma.date
+    assert_equal 6, @enigma.date.length
   end
 
   def test_encrypt_today
-    # date = mock
-    # date.expects(:date).returns("091519")
-    #
-    expected = {encryption: "emiolhtrota!",
+    today = Time.new.strftime("%d%m%y")
+
+    expected = {encryption: "hqiooltrrxa!",
                 key: "23456",
-                date: "091619"}
+                date: today }
 
     assert_equal expected, @enigma.encrypt("hello world!", "23456")
   end
 
   def test_decrypt_today
-    # stub date
+    today = Time.new.strftime("%d%m%y")
+
     expected = {decryption: "hello world!",
                 key: "23456",
-                date: "091619"}
-    assert_equal expected, @enigma.decrypt("emiolhtrota!", "23456")
+                date: today}
+    assert_equal expected, @enigma.decrypt("hqiooltrrxa!", "23456")
   end
 
   def test_key
-    key = "00000"
-    assert_equal key, @enigma.key
+    assert_instance_of String, @enigma.key
+    assert_equal 5, @enigma.key.length
+
+    @e2 = Enigma.new
+    @e2.expects(:key).returns("23456")
+
+    assert_equal "23456", @e2.key
   end
 
   def test_encrypt_today_generate_key
+    @enigma.instance_variable_set(:@key, "23456")
+    @enigma.instance_variable_set(:@date, "160919")
 
-    expected = {encryption: "emiolhtrota!",
+    expected = {encryption: "hqiooltrrxa!",
                 key: "23456",
-                date: "091619"}
+                date: "160919"}
 
     assert_equal expected, @enigma.encrypt("hello world!")
   end
 
   def test_decrypt_today_generate_key
-
-    expect(:key).returns("23456")
+    @enigma.instance_variable_set(:@key, "23456")
+    @enigma.instance_variable_set(:@date, "160919")
 
     expected = {decryption: "hello world!",
                 key: "23456",
-                date: "091619"}
+                date: "160919"}
 
-    assert_equal expected, @enigma.decrypt("emiolhtrota!")
+    assert_equal expected, @enigma.decrypt("hqiooltrrxa!")
   end
 end
