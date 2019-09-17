@@ -3,9 +3,9 @@ module Shiftable
   def keys_letters(key)
     num_array = key.chars
     keys_hash = {A: nil, B: nil, C: nil, D:nil}
-    keys_hash.each_with_index do |(key, value), index|
+    keys_hash.each_with_index do |(hkey, value), index|
       if index < keys_hash.length
-        keys_hash[key] = (num_array[index] + num_array[index + 1]).to_i
+        keys_hash[hkey] = (num_array[index] + num_array[index + 1]).to_i
       end
     end
     keys_hash
