@@ -53,8 +53,21 @@ class CrackIt
   def get_subkey
     shift = match_ABCD_values
     subkey = shift.merge(@offset) do |key, oldv, newv|
-      (oldv - newv) * - 1
+      (oldv * -1 - newv) # check here if decryption isn't working
     end
+  end
+
+  def key_possibilities
+    subkey = get_subkey
+    key_possibles = Hash.new([])
+    subkey.each do |k, v|
+      key_possibles[k] = [v] if key_possibles[k].empty?
+      while (v + 27) < 100
+        key_possibles[k] << v + 27
+        v += 27
+      end
+    end
+    key_possibles
   end
 
   # def final_offset

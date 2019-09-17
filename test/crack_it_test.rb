@@ -7,6 +7,8 @@ class CrackItTest < Minitest::Test
 
   def setup
     @crack_me = CrackIt.new("vjqtbeaweqihssi", "291018")
+    @crack_me_known_key = CrackIt.new("yzetkcbe,zfxkssf d!symrsedex'rnelqssysnlednxkc",
+      "170919")
   end
 
   def test_it_exists
@@ -69,8 +71,28 @@ class CrackItTest < Minitest::Test
   end
 
   def test_get_subkey
-    expected = {:A=>20, :B=>8, :C=>7, :D=>12}
+    expected = {:A=>8, :B=>2, :C=>3, :D=>4}
+    expected2 = {:A=>20, :B=>21, :C=>8, :D=>18}
 
     assert_equal expected, @crack_me.get_subkey
+    assert_equal expected2, @crack_me_known_key.get_subkey
+  end
+
+  def test_multiples_of_27
+    expected = {
+        :A=>[8, 35, 62, 89],
+        :B=>[2, 29, 56, 83],
+        :C=>[3, 30, 57, 84],
+        :D=>[4, 31, 58, 85]
+      }
+    expected2 = {
+        :A=>[20, 47, 74],
+        :B=>[21, 48, 75],
+        :C=>[8, 35, 62, 89],
+        :D=>[18, 45, 72, 99]
+      }
+
+    assert_equal expected, @crack_me.key_possibilities
+    assert_equal expected2, @crack_me_known_key.key_possibilities
   end
 end
