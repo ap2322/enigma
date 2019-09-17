@@ -67,4 +67,10 @@ class CrackItTest < Minitest::Test
 
     assert_equal expected, @crack_me.match_ABCD_values
   end
+
+  def test_get_subkey
+    expected = {:A=>20, :B=>8, :C=>7, :D=>12}
+
+    assert_equal expected, @crack_me.get_subkey
+  end
 end

@@ -36,7 +36,7 @@ class CrackIt
     rev_shifts = find_shift.reverse
     letter_shifts = []
     rev_m.each_with_index do |char, index|
-      letter_shifts << [char, rev_shifts[index %4]]
+      letter_shifts << [char, rev_shifts[index % 4]]
     end
     letter_shifts.reverse!
   end
@@ -48,6 +48,13 @@ class CrackIt
       abcd[k] = first_4[i][1]
     end
     abcd
+  end
+
+  def get_subkey
+    shift = match_ABCD_values
+    subkey = shift.merge(@offset) do |key, oldv, newv|
+      (oldv - newv) * - 1
+    end
   end
 
   # def final_offset
