@@ -1,7 +1,7 @@
 require './test_helper'
 require 'date'
 require_relative '../lib/crack_it'
-require 'pry'
+# require 'pry'
 
 class CrackItTest < Minitest::Test
 
@@ -16,8 +16,15 @@ class CrackItTest < Minitest::Test
   def test_attributes_at_init
     assert_equal "vjqtbeaweqihssi", @crack_me.message_in
     assert_equal "291018", @crack_me.date
+    actual_off = @crack_me.instance_variable_get(:@offset)
+    expected_offset = {:A=>6, :B=>3, :C=>2, :D=>4}
+    assert_equal expected_offset, actual_off
+    expected_letter_array = ["v", "j", "q", "t", "b",
+                             "e", "a", "w", "e", "q",
+                             "i", "h", "s", "s", "i"]
+    actual_char_arr = @crack_me.instance_variable_get(:@message_in_char_array)
+    assert_equal expected_letter_array, actual_char_arr
   end
-
 
   def test_last_4_match
     last_4 = [["h", " "], ["s", "e"], ["s", "n"], ["i", "d"]]

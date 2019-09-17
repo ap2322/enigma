@@ -9,6 +9,7 @@ class CrackIt
     @message_in = message
     @date = date
     @message_in_char_array = message_in.chars
+    @offset = offset(date)
   end
 
   def last_4_match
