@@ -71,13 +71,14 @@ class CrackIt
   end
 
   def match_keys
-    matches = []
-    key_possibles = key_possibilities
-    key_possibles.each_cons(2) do |first, second|
-      match_pairs = [first[1], second[1]]
-    end
-    matches
+    ab = match_A_B; bc = match_B_C; c_d = match_C_D
+    final_matches = ab.find { |pair| bc.flatten.include?(pair[1])}
+    bc_sub = bc.find { |pair| c_d.flatten.include?(pair[1])}
+    cd_sub = c_d.find { |pair| bc.flatten.include?(pair[0])}
+    final_matches += [bc_sub[1], cd_sub[1]]
   end
+
+
 
   def match_A_B
     matches = []
@@ -106,6 +107,22 @@ class CrackIt
         b_index = b_1st_chars.index(num)
         a_index = a_2nd_chars.index(num)
         matches << [key_possibles[:B][a_index], key_possibles[:C][b_index]]
+      end
+    end
+    matches
+  end
+
+  def match_C_D
+    matches = []
+    key_possibles = key_possibilities
+    a_2nd_chars = key_possibles[:C].map {|num| num[1]}
+    b_1st_chars = key_possibles[:D].map {|num| num[0]}
+
+    a_2nd_chars.each do |num|
+      if b_1st_chars.include?(num)
+        b_index = b_1st_chars.index(num)
+        a_index = a_2nd_chars.index(num)
+        matches << [key_possibles[:C][a_index], key_possibles[:D][b_index]]
       end
     end
     matches
