@@ -70,6 +70,50 @@ class CrackIt
     key_possibles
   end
 
+  def match_keys
+    matches = []
+    key_possibles = key_possibilities
+    key_possibles.each_cons(2) do |first, second|
+      match_pairs = [first[1], second[1]]
+    end
+    matches
+  end
 
+  def match_A_B
+    matches = []
+    key_possibles = key_possibilities
+    a_2nd_chars = key_possibles[:A].map {|num| num[1]}
+    b_1st_chars = key_possibles[:B].map {|num| num[0]}
+
+    a_2nd_chars.each do |num|
+      if b_1st_chars.include?(num)
+        b_index = b_1st_chars.index(num)
+        a_index = a_2nd_chars.index(num)
+        matches << [key_possibles[:A][a_index], key_possibles[:B][b_index]]
+      end
+    end
+    matches
+  end
+
+  def match_B_C
+    matches = match_A_B
+    key_possibles = key_possibilities
+    a_2nd_chars = key_possibles[:B].map {|num| num[1]}
+    b_1st_chars = key_possibles[:C].map {|num| num[0]}
+    binding.pry
+    a_2nd_chars.each do |num|
+      if b_1st_chars.include?(num)
+        b_index = b_1st_chars.index(num)
+        a_index = a_2nd_chars.index(num)
+        matches << [key_possibles[:B][a_index], key_possibles[:C][b_index]]
+      end
+    end
+    matches
+  end
+
+  def match_characters?(elem1, elem2)
+    return false if elem1[1] != elem2[0]
+    true
+  end
 
 end

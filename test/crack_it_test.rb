@@ -96,6 +96,27 @@ class CrackItTest < Minitest::Test
     assert_equal expected2, @crack_me_known_key.key_possibilities
   end
 
-  def test_convert_
+  def test_match_keys
+    possible_key2 = {
+        :A=>["20", "47", "74"],
+        :B=>["21", "48", "75"],
+        :C=>["08", "35", "62", "89"],
+        :D=>["18", "45", "72", "99"]
+      }
+
+    assert_equal ["74", "48", "89", "99"], @crack_me_known_key.match_keys
+  end
+
+  def test_match_characters
+    assert_equal true, @crack_me_known_key.match_characters?("74", "48")
+    assert_equal false, @crack_me_known_key.match_characters?("74", "58")
+  end
+
+  def test_match_A_B
+    assert_equal [["47", "75"], ["74", "48"]], @crack_me_known_key.match_A_B
+  end
+
+  def test_match_B_C
+    assert_equal [], @crack_me_known_key.match_B_C
   end
 end
