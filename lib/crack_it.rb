@@ -96,11 +96,11 @@ class CrackIt
   end
 
   def match_B_C
-    matches = match_A_B
+    matches = []
     key_possibles = key_possibilities
     a_2nd_chars = key_possibles[:B].map {|num| num[1]}
     b_1st_chars = key_possibles[:C].map {|num| num[0]}
-    binding.pry
+
     a_2nd_chars.each do |num|
       if b_1st_chars.include?(num)
         b_index = b_1st_chars.index(num)

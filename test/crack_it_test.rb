@@ -117,6 +117,12 @@ class CrackItTest < Minitest::Test
   end
 
   def test_match_B_C
-    assert_equal [], @crack_me_known_key.match_B_C
+    assert_equal [["48", "89"]], @crack_me_known_key.match_B_C
   end
+
+  def test_match_C_D
+    assert_equal [["89", "99"]], @crack_me_known_key.match_C_D
+  end
+
+  
 end
