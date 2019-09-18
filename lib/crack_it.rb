@@ -3,13 +3,14 @@ require_relative '../lib/shiftable'
 class CrackIt
   include Shiftable
 
-  attr_reader :date, :message_in
+  attr_reader :date, :message_in, :key
 
   def initialize(message, date)
     @message_in = message
     @date = date
     @message_in_char_array = message_in.chars
     @offset = offset(date)
+    @key = make_keys
   end
 
   def last_4_match

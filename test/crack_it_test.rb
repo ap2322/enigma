@@ -128,4 +128,8 @@ class CrackItTest < Minitest::Test
     assert_equal "74899", @crack_me_known_key.make_keys
   end
 
+  def test_key_attribute
+    assert_equal "74899", @crack_me_known_key.key
+  end
+
 end
