@@ -126,6 +126,9 @@ class CrackItTest < Minitest::Test
 
   def test_make_keys
     assert_equal "74899", @crack_me_known_key.make_keys
+    c = CrackIt.new("womnwomnjon'qjybycbwqjzab", "170919")
+
+    assert_instance_of String, c.key
   end
 
   def test_key_attribute

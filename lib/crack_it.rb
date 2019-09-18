@@ -141,7 +141,7 @@ class CrackIt
       key_string = key[0] if key_string.length == 0
       key_string += key[1]
     end
-    key_string
+    key_string.to_s
   end
 
 end
