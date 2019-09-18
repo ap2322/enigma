@@ -133,4 +133,14 @@ class CrackIt
     true
   end
 
+  def make_keys
+    keys_array = match_keys
+    key_string = ''
+    keys_array.each do |key|
+      key_string = key[0] if key_string.length == 0
+      key_string += key[1]
+    end
+    key_string
+  end
+
 end

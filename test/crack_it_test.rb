@@ -124,5 +124,8 @@ class CrackItTest < Minitest::Test
     assert_equal [["89", "99"]], @crack_me_known_key.match_C_D
   end
 
-  
+  def test_make_keys
+    assert_equal "74899", @crack_me_known_key.make_keys
+  end
+
 end
