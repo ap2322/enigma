@@ -23,4 +23,10 @@ class Enigma
     { decryption: decrypted_message, key: key, date: date, }
   end
 
+  def crack(encrypted_text, date = @date)
+    # find new key
+    # find new message?
+    # call decrypt(encrypted_text, key, date)
+  end
+
 end
