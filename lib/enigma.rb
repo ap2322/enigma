@@ -2,6 +2,7 @@ require_relative './encryption'
 require_relative './decryption'
 require_relative './key'
 require_relative './date'
+require_relative './crack_it'
 
 class Enigma
   def initialize
@@ -24,9 +25,8 @@ class Enigma
   end
 
   def crack(encrypted_text, date = @date)
-    # find new key
-    # find new message?
-    # call decrypt(encrypted_text, key, date)
+    key = CrackIt.new(encrypted_text, date).key
+    decrypt(encrypted_text, key, date)
   end
 
 end
