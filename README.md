@@ -6,7 +6,7 @@ Turing BE Mod 1
 
 Currently, my Enigma class with encrypt and decrypt methods work successfully. Encrypt/decrypt command line interfaces successfully implemented as specified in the interaction pattern.
 
-On branch `craked1`, much of the cracking functionality is started, though the command line interface for that is not implemented.
+On branch `cracked2`, much of the cracking functionality is started, including the command line interface. However the algorithm to find the key is not working and needs to be refactored.
 
 Enigma Class with encrypt and decrypt methods successfully implemented.
 
